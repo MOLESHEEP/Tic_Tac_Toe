@@ -100,4 +100,31 @@ func main() {
 		}
 
 	}
+
+}
+
+func main_test(row int, col int) [3][3]string {
+	initialBoard()
+	currentPlayer = playerO
+	fmt.Println("〇×ゲームを開始します。")
+
+	if row < 0 || row >= boardSize || col < 0 || col >= boardSize {
+		fmt.Println("無効な行または列です。もう一度入力してください。")
+	}
+	// セルにプレーヤーの記号を入れる
+	board[row][col] = currentPlayer
+	printBoard()
+
+	if checkWin() {
+		fmt.Print("\n")
+		//printBoard()
+		fmt.Printf("プレーヤー %s の勝利です！\n", currentPlayer)
+	}
+	// プレーヤー交代
+	if currentPlayer == playerX {
+		currentPlayer = playerO
+	} else {
+		currentPlayer = playerX
+	}
+	return board
 }
